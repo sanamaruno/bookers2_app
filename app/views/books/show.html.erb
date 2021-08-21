@@ -1,0 +1,48 @@
+<div class= "container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+       <h3>User info</h3>
+      <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+      <table class="table">
+        <tbody>
+         <tr>
+          <th>name</th>
+          <th><%= @user.name %></th>
+         </tr>
+         <tr>
+           <th>introduction</th>
+           <th><%= @user.introduction %></th>
+         </tr>
+        </tbody>
+      </table>
+
+      <a class="btn btn-outline-secondary btn-block fas fa-user-cog"></a>
+
+      <h3>New book</h3>
+      <%= form_with model: @book,local:true do |f| %>
+      <h5>Title</h5>
+      <%= f.text_field :title %>
+      <h5>Opinion</h5>
+      <%= f.text_area :body %>
+      <br>
+      <%= f.submit 'Create Book', class: 'btn btn-success' %>
+      </br>
+      <% end %>
+    </div>
+
+
+    <div class="col-md-8 offset-md-1">
+      <h2>Books detail</h2>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td><%= @book.title %></td>
+            <td><%= @book.body %></td>
+            <td><a class="btn btn-success"></a></td>
+            <td><a class="btn btn-danger"></a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
