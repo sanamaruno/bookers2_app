@@ -1,25 +1,11 @@
 <div class= "container px-5 px-sm-0">
   <div class="row">
     <div class="col-md-3">
-       <h3>User info</h3>
-      <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-      <table class="table">
-        <tbody>
-         <tr>
-          <th>name</th>
-          <th><%= @user.name %></th>
-         </tr>
-         <tr>
-           <th>introduction</th>
-           <th><%= @user.introduction %></th>
-         </tr>
-        </tbody>
-      </table>
 
-      <a class="btn btn-outline-secondary btn-block fas fa-user-cog"></a>
+      <%= render 'users/info', user:@user %>
 
       <h3>New book</h3>
-      <%= form_with model: @book,local:true do |f| %>
+      <%= form_with model: @newbook,local:true do |f| %>
       <h5>Title</h5>
       <%= f.text_field :title %>
       <h5>Opinion</h5>
@@ -36,10 +22,21 @@
       <table class="table">
         <tbody>
           <tr>
-            <td><%= @book.title %></td>
+            <td>
+              <%= link_to user_path(@user.id) do %>
+               <%= attachment_image_tag @book.user, :profile_image, :fill, 30, 30, fallback: "no_image.jpg" %>
+               <br>
+               <%= @user.name %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to book_path(@book.id) do %>
+               <%= @book.title %>
+              <% end %>
+            </td>
             <td><%= @book.body %></td>
-            <td><a class="btn btn-success"></a></td>
-            <td><a class="btn btn-danger"></a></td>
+            <td><%= link_to "Edit", edit_book_path(@book.id), class: "btn btn-success" %></td>
+            <td><%= link_to "Destroy", book_path(@book.id), method: :delete, class: "btn btn-danger", "data-confirm" => "Are you sure?" %></td>
           </tr>
         </tbody>
       </table>
