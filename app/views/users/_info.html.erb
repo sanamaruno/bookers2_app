@@ -13,4 +13,9 @@
         </tbody>
       </table>
 
-      <a class="btn btn-outline-secondary btn-block fas fa-user-cog"></a>
+      <!--<a class="btn btn-outline-secondary btn-block fas fa-user-cog"></a>-->
+      <% if user.id == current_user.id %>
+       <%= link_to edit_user_path(user) ,class: "btn btn-outline-secondary btn-block" do %>
+         <i class="fas fa-user-cog"></i>
+       <% end %>
+      <% end %>
