@@ -5,6 +5,16 @@
 
     <div class="col-md-8 offset-md-1">
      <h1>User info</h1>
+
+     <p class="validates">
+      <% if @user.errors.any? %>
+       <%= @user.errors.count %>error
+       <% @user.errors.full_messages.each do |message| %>
+         <%= message %><br>
+       <% end %>
+      <% end %>
+     </p>
+
      <%= form_with model: @user, local: true do |f| %>
       <label for="inputName">Name</label>
       <br>
