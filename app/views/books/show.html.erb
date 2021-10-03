@@ -71,14 +71,14 @@
            </tr>
           <% end %>
 
-          <tr>
-            <%= form_with(model:[@book, @book_comment], local: true) do |f| %>
-             <td><%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %></td>
-             <td><%= f.submit "送信する" %></td>
-            <% end %>
-          </tr>
         </tbody>
       </table>
+      <div>
+       <%= form_with(model:[@book, @book_comment], local: true) do |f| %>
+        <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+        <%= f.submit "送信する" %>
+       <% end %>
+      </div>
     </div>
   </div>
 </div>
