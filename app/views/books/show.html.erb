@@ -50,23 +50,17 @@
 
             <td>コメント数：<%= @book.book_comments.count %></td>
           </tr>
-
-          <% @book.book_comments.each do |book_comment| %>
-           <tr>
-             <td><%= book_comment.user.name %></td>
-             <td><%= book_comment.comment %></td>
-             <% if book_comment.user == current_user %>
-              <td>
-                <%= link_to "Destroy", book_book_comment_path(book_comment.book, book_comment), method: :delete %>
-              </td>
-             <% end %>
-           </tr>
-          <% end %>
-        </tbody>
+         </tbody>
       </table>
+      <table class="table">
+          <tbody class="comments_index">
+             <%= render 'books/comments', book: @book %>
+          </tbody>
+      </table>
+
       <div>
-       <%= form_with(model:[@book, @book_comment], local: true) do |f| %>
-        <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+       <%= form_with(model:[@book, @book_comment]) do |f| %>
+        <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに",class:'text_area' %>
         <br>
         <%= f.submit "送信する" %>
        <% end %>
