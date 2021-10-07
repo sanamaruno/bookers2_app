@@ -1,3 +1,8 @@
 $(".comments_count_<%= @book.id %>").html("コメント数: <%= @book.book_comments.count %>");
 $('.comments_index').html("<%= j(render 'books/comments', book: @book) %>");
 $(".text_area").val("");
+
+<!--showのtrタグにidを指定するやり方だと１行目の書き方は変わる-->
+
+<!--form_withは自動で「モデル名_カラム名」がidになるため、-->
+<!--３行目はViewにクラス名を追加せず「("#book_comment_comment").val("")」って指定もできる！-->
